@@ -7,7 +7,6 @@ setInterval(function () {
     }
     speedKill -= 10;
 }, 20);
-
 function killQuaiVat() {
     if (speedKill>=600){
         nhanVatB.checkGame=false;

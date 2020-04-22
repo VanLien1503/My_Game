@@ -39,10 +39,14 @@ function drawVitalityB() {
     context.fillStyle="#fff244";
     context.fillText("Tổn Thất: "+nhanVatB.damageReceive,680,130);
 }
+function drawMiss() {
+        let image=new Image();
+        image.src="image/backGround/Miss.png";
+        context.drawImage(image,370,150);
+}
 
 function drawGame() {
     context.clearRect(0, 0, canvas.width, canvas.height);
-//
     drawBackgroud1();
 // gọi hàm máu cho nv
     drawMau();
@@ -50,23 +54,20 @@ function drawGame() {
 // gọi hàm máu cho quái vật
     drawMauQV();
     drawManaQV();
-
-
 // vẽ chữ tiêu hao vitality cho nhân vật
-//     drawVitalityB();
-//     drawVitalityA();
     checkImgVitality();
+    // drawMiss();
 
 // check game
     checkWin();
-
     checkOnTuTy();
     checkOnTuTyNV();
+
+
 // gọi hàm hính ảnh cho nhân vật
     checkImgA();
     checkImgB();
 //
-
    requestAnimationFrame(drawGame);
 }
 let attack_btn = document.getElementById("attack_btn");
@@ -120,13 +121,10 @@ attack_btn.onclick = function () {
         nhanVatB.checkGame=false;
     }
 };
-
 // tạo hàm hiển thị  Máu bị mất
 let checkMauA=nhanVatA.attack(nhanVatB);
 console.log(checkMauA);
 let checkMauB=nhanVatB.attack(nhanVatA);
 console.log(checkMauB);
-
-
 //
 drawGame();

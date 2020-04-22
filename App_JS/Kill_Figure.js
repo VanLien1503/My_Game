@@ -8,7 +8,6 @@ setInterval(function () {
     }
     kilx += 15;
 }, 40);
-
 function killNhanVat() {
     if (kilx <= 30) {
         nhanVatA.checkGame = false;

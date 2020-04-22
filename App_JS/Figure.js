@@ -14,7 +14,6 @@ setInterval(function () {
         j++
     }
 }, 200);
-
 function Figure(name, vitality, energy, damage, defense, avoid,
                 exactly, x, y, speedFigure, status,
                 xLocationFirst, yLocationFirst, checkGame, checkKill) {
@@ -34,7 +33,6 @@ function Figure(name, vitality, energy, damage, defense, avoid,
     this.checkGame = checkGame;
     this.checkKill = checkKill;
     this.damageReceive = 0;
-
     // check the daeth...!.
     this.checkDaeth = function (nhanVat) {
         if (nhanVat.vitality <= 0) {
@@ -70,16 +68,8 @@ function Figure(name, vitality, energy, damage, defense, avoid,
                     nhanVat.vitality -= resultDame_Kill;
                     nhanVat.damageReceive = resultDame_Kill;
                     this.energy = 0;
-
-                    //
-                    console.log("đánh Skill Mất : " + (this.damge * damage) / nhanVat.defense);
-                    console.log(nhanVat.vitality);
-
-
-
                 } else {
                     this.energy = 0;
-                    console.log(" đánh Skill Miss");
                     nhanVat.damageReceive = 0;
                 }
             } else {
@@ -87,11 +77,8 @@ function Figure(name, vitality, energy, damage, defense, avoid,
                 if (!this.checkAvoid(nhanVat)) {
                     nhanVat.vitality -= this.damge / nhanVat.defense;
                     this.energy++;
-                    console.log("đánh thường Mất :" + this.damge / nhanVat.defense);
-                    console.log(nhanVat.vitality);
                     let resultDame_Tay = this.damge / nhanVat.defense;
                     nhanVat.damageReceive = resultDame_Tay
-
                 } else {
                     this.energy++;
                     console.log("đánh thương miss");
@@ -101,21 +88,18 @@ function Figure(name, vitality, energy, damage, defense, avoid,
         }
     };
 }
-
-let nhanVatA = new Figure("Aly", 120, 0, 30,
+let nhanVatA = new Figure("Aly", 60, 0, 30,
     10, 18, 15, 30, 300, 5,
     false, 30, 300, false, false);
-let nhanVatB = new Figure("BaBa", 120, 0, 30,
+let nhanVatB = new Figure("BaBa", 60, 0, 30,
     10, 17, 14, 650, 130, 5,
     false, 650, 130, false, false);
-
 // hình ảnh đầu tiên nhân vật
 function imgFirstA() {
     let image = new Image();
     image.src = "image/NhanVat/NhanVatA1.png";
     context.drawImage(image, nhanVatA.x, nhanVatA.y)
 }
-
 function moveTo1() {
     let image = new Image();
     image.src = "image/NhanVat/moveTo.png";
@@ -128,7 +112,6 @@ function drawFigure_01() {
     image.src = "image/NhanVat/NhanVatA" + i + ".png";
     context.drawImage(image, nhanVatA.x, nhanVatA.y)
 }
-
 //check điều kiện chuyển ảnh
 let checkImgA = function () {
     if (nhanVatA.checkGame === false) {
@@ -170,21 +153,18 @@ function imgFirsQV() {
     image.src = "image/QuaiVat/QuaiVatA1.png";
     context.drawImage(image, nhanVatB.x, nhanVatB.y)
 }
-
 // tao hình anh di chuyển cho Quái Vật
 function QvMoveTo() {
     let image = new Image();
     image.src = "image/QuaiVat/QuaiVatA3.png";
     context.drawImage(image, nhanVatB.x, nhanVatB.y)
 }
-
 // Tạo Chuyển động cho Quái Vật Khi Dung Kill
 function drawFigure_02() {
     let image = new Image();
     image.src = "image/QuaiVat/QuaiVatA" + j + ".png";
     context.drawImage(image, nhanVatB.x, nhanVatB.y);
 }
-
 // check Điều Kiện chuyển anh cho Quái Vật
 let checkImgB = function () {
     if (nhanVatB.checkGame === false) {
@@ -205,7 +185,6 @@ setInterval(function () {
             xMoveToB = true;
         }
     }
-
     if (xMoveToB) {
         nhanVatB.x += nhanVatB.speed;
         if (nhanVatB.x <= nhanVatB.xLocationFirst)
@@ -218,12 +197,15 @@ setInterval(function () {
         }
     }
 }, 5);
-
 // check imgVitality
 function checkImgVitality() {
-        if (nhanVatA.checkGame===false){
-            drawVitalityA();
-        }if (nhanVatB.checkGame===false){
+    if (nhanVatA.checkGame === true) {
         drawVitalityB();
+    }
+    if (nhanVatB.checkGame === true) {
+        drawVitalityA();
+    }
+    if (nhanVatA.damageReceive === 0 || nhanVatB.damageReceive === 0) {
+        drawMiss();
     }
 }
