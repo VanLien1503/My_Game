@@ -1,0 +1,22 @@
+div{
+    position: absolute;
+    z-index: 999;
+    margin-left: 300px;
+    top: 400px;
+}
+input{
+    width: 30px;
+    height: 30px;
+    background-color: orange;
+    color: red;
+}
+strong {
+    color: yellow;
+}
+button{
+    margin-top: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #41ff4f;
+    /*margin-left: 200px;*/
+}
