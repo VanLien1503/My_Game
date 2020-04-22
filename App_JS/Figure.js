@@ -33,6 +33,7 @@ function Figure(name, vitality, energy, damage, defense, avoid,
     this.yLocationFirst = yLocationFirst;
     this.checkGame = checkGame;
     this.checkKill = checkKill;
+    this.damageReceive = 0;
 
     // check the daeth...!.
     this.checkDaeth = function (nhanVat) {
@@ -65,21 +66,21 @@ function Figure(name, vitality, energy, damage, defense, avoid,
                 this.checkKill = true;
                 // load hình ảnh đánh kill
                 if (!this.checkAvoid(nhanVat)) {
-                    nhanVat.vitality -= ((this.damge * this.damge) / nhanVat.defense) / 2;
-                    this.energy = 0;
                     let resultDame_Kill = ((this.damge * this.damge) / nhanVat.defense) / 2;
+                    nhanVat.vitality -= resultDame_Kill;
+                    nhanVat.damageReceive = resultDame_Kill;
+                    this.energy = 0;
+
                     //
                     console.log("đánh Skill Mất : " + (this.damge * damage) / nhanVat.defense);
                     console.log(nhanVat.vitality);
 
-                    return resultDame_Kill;
 
 
                 } else {
                     this.energy = 0;
                     console.log(" đánh Skill Miss");
-                    let miss_Kill = 0;
-                    return miss_Kill;
+                    nhanVat.damageReceive = 0;
                 }
             } else {
                 this.checkKill = false;
@@ -89,16 +90,12 @@ function Figure(name, vitality, energy, damage, defense, avoid,
                     console.log("đánh thường Mất :" + this.damge / nhanVat.defense);
                     console.log(nhanVat.vitality);
                     let resultDame_Tay = this.damge / nhanVat.defense;
-
-
-                    return resultDame_Tay;
-
+                    nhanVat.damageReceive = resultDame_Tay
 
                 } else {
                     this.energy++;
                     console.log("đánh thương miss");
-                    let miss_Tay =0;
-                    return miss_Tay;
+                    nhanVat.damageReceive = 0;
                 }
             }
         }
@@ -221,8 +218,12 @@ setInterval(function () {
         }
     }
 }, 5);
+
 // check imgVitality
 function checkImgVitality() {
-    drawVitalityA();
-    drawVitalityB();
+        if (nhanVatA.checkGame===false){
+            drawVitalityA();
+        }if (nhanVatB.checkGame===false){
+        drawVitalityB();
+    }
 }

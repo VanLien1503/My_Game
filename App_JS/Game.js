@@ -31,13 +31,13 @@ function drawVitalityA() {
     context.beginPath();
     context.font= "30px Arial";
     context.fillStyle="#fff244";
-    context.fillText("Tổn Thất: "+checkMauA,10,250);
+    context.fillText("Tổn Thất: "+nhanVatA.damageReceive,10,250);
 }
 function drawVitalityB() {
     context.beginPath();
     context.font= "30px Arial";
     context.fillStyle="#fff244";
-    context.fillText("Tổn Thất: "+checkMauB,680,130);
+    context.fillText("Tổn Thất: "+nhanVatB.damageReceive,680,130);
 }
 
 function drawGame() {
@@ -53,8 +53,9 @@ function drawGame() {
 
 
 // vẽ chữ tiêu hao vitality cho nhân vật
-    drawVitalityB();
-    drawVitalityA();
+//     drawVitalityB();
+//     drawVitalityA();
+    checkImgVitality();
 
 // check game
     checkWin();
